@@ -5,6 +5,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\DB;
+
+
 
 
 class LoginController extends Controller
@@ -17,8 +20,6 @@ class LoginController extends Controller
         }
         return view("auth.login");
     }
- 
-
 
 
     public function loginProcess(Request $request)
@@ -31,8 +32,6 @@ class LoginController extends Controller
             'password' => $password
         ]);
 
-
-
         if (!$login) {
             return $this->render('userLoginError', ' Bilgilerinizi kontrol ederek tekrar deneyiniz.', 403);
         } else {
@@ -44,4 +43,5 @@ class LoginController extends Controller
         Auth::logout();
         return redirect('login');
     }
+
 }
